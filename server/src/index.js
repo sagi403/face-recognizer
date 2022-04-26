@@ -3,7 +3,7 @@ import { app } from "./app.js";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://face-mongo-srv:27017/face");
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("Connected to mongoDb");
   } catch (err) {
     console.log(err);

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: face.dev
+      http:
+        paths:
+          - path: /api/add-person/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: face-srv
+                port:
+                  number: 3000

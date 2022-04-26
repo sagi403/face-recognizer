@@ -5,7 +5,7 @@ import generateFaceFeatures from "../utils/generate-face-features.js";
 const router = express.Router();
 
 router.post("/api/add-person", async (req, res) => {
-  const name = req.body;
+  const { name } = req.body;
   const vector = generateFaceFeatures();
 
   const face = new Face({

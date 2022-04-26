@@ -5,13 +5,10 @@ const faceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  vector: [
-    {
-      type: [Number],
-      required: true,
-      validate: [256, "Positions should be 256"],
-    },
-  ],
+  vector: {
+    type: [Number],
+    required: true,
+  },
 });
 
 const Face = mongoose.model("Face", faceSchema);
