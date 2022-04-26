@@ -9,7 +9,7 @@ const faceSchema = new mongoose.Schema({
     {
       type: [Number],
       required: true,
-      validate: [limit, "Positions should be 256"],
+      validate: [256, "Positions should be 256"],
     },
   ],
 });
