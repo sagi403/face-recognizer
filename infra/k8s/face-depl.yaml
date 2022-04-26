@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: face-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: face
+  template:
+    metadata:
+      labels:
+        app: face
+    spec:
+      containers:
+        - name: face
+          image: sagi403/face
+          env:
+            - name: MONGO_URI
+              value: "mongodb://face-mongo-srv:27017/face"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: face-srv
+spec:
+  selector:
+    app: face
+  ports:
+    - name: face
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
