@@ -12,11 +12,11 @@ router.post(
   validateRequest,
   async (req, res) => {
     const { name } = req.body;
-    const vector = generateFaceFeatures();
+    const features = generateFaceFeatures();
 
     const face = new Face({
       name,
-      vector,
+      features,
     });
     await face.save();
 

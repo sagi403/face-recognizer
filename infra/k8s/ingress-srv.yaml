@@ -17,3 +17,10 @@ spec:
                 name: face-srv
                 port:
                   number: 3000
+          - path: /api/find-person/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: face-srv
+                port:
+                  number: 3000

@@ -5,7 +5,7 @@ const faceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  vector: {
+  features: {
     type: [Number],
     required: true,
   },
