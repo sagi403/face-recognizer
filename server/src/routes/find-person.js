@@ -6,7 +6,8 @@ import { Face } from "../models/face.js";
 const router = express.Router();
 
 router.get("/api/find-person", async (req, res) => {
-  res.status(200).send({});
+  const face = await Face.find({});
+  res.status(200).send(face);
 });
 
 export { router as findPersonRouter };

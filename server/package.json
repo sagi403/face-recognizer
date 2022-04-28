@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
+    "data:import": "node src/seeder.js",
+    "data:destroy": "node src/seeder.js -d"
   },
   "jest": {
     "testEnvironment": "jest-environment-node",
