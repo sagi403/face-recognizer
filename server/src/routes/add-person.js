@@ -14,13 +14,18 @@ router.post(
     const { name } = req.body;
     const features = generateFaceFeatures();
 
-    const face = new Face({
-      name,
-      features,
-    });
-    await face.save();
+    try {
+      const face = new Face({
+        name,
+        features,
+      });
+      await face.save();
 
-    res.status(201).send(face);
+      res.status(201).send(face);
+    } catch (err) {
+      console.log(err);
+      throw new Error("Failed to add new person to the database");
+    }
   }
 );
 

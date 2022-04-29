@@ -1,6 +1,4 @@
 import express from "express";
-import { body } from "express-validator";
-import { validateRequest } from "../middleware/validate-request.js";
 import { Face } from "../models/face.js";
 import dotProduct from "../utils/dot-product.js";
 import generateFaceFeatures from "../utils/generate-face-features.js";
