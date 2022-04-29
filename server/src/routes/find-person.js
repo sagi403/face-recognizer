@@ -7,15 +7,29 @@ import generateFaceFeatures from "../utils/generate-face-features.js";
 
 const router = express.Router();
 
+const NUMBER_OF_CLOSEST = 3;
+
 router.get("/api/find-person", async (req, res) => {
-  // const face = await Face.find({});
+  const face = await Face.find({});
   const personFeatures = generateFaceFeatures();
-  const test = await Face.find({ name: "person1" });
-  const testFeatures = test[0]["features"];
 
-  const dot = dotProduct(personFeatures, testFeatures);
+  if (face.length <= NUMBER_OF_CLOSEST) {
+    return res.status(200).send(face);
+  }
 
-  res.status(200).send({ dot });
+  const closestList = [];
+
+  for (const person of face) {
+    const obj = {};
+    const dot = dotProduct(personFeatures, person["features"]);
+    obj["person"] = person;
+    obj["dot"] = dot;
+    closestList.push(obj);
+  }
+
+  closestList.sort((a, b) => b.dot - a.dot);
+
+  res.status(200).send(closestList.slice(0, NUMBER_OF_CLOSEST));
 });
 
 export { router as findPersonRouter };
